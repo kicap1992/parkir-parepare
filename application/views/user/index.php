@@ -290,7 +290,7 @@
 						var biaya_motor = area_parkir_1.biaya_motor;
 						var biaya_mobil = area_parkir_1.biaya_mobil;
 						let infowindow = new google.maps.InfoWindow({
-							content: "Alamat : " + area_parkir_1.alamat + "<br>Luas : " + area_parkir_1.luas + " m2<br>Biaya Parkir Motor : " + biaya_motor + "<br>Biaya Parkir Mobil : " + biaya_mobil + "<br><br><center><a onclick='kritik(" + area_parkir_1.id_parkir + ")' class='btn btn-primary btn-xs'>Kritik Dan Komen</a></center>"
+							content: "Alamat : " + area_parkir_1.alamat + "<br>Luas : " + area_parkir_1.luas + " m2<br>Biaya Parkir Motor : " + biaya_motor + "<br>Biaya Parkir Mobil : " + biaya_mobil + "<br><br><center><a onclick='kritik(" + area_parkir_1.id_parkir + ")' class='btn btn-primary btn-xs'>Kritik Dan Komen</a></center><br><center><a onclick='route(" + parseFloat(coordinate.lat) + ","+parseFloat(coordinate.lng)+")' class='btn btn-success btn-xs'>Rute</a></center>"
 						});
 						infowindow_data.push(infowindow);
 						marker.addListener('click', function() {
@@ -322,6 +322,16 @@
 		}
 
 		get_marker_parkir();
+
+		function route(lat,lng){
+			console.log(lat)
+			console.log(lng)
+			var data = {
+				lat : lat,
+				lng : lng
+			}
+			messageHandler.postMessage(JSON.stringify(data));
+		}
 
 		async function get_polygon_parkir() {
 			try {
